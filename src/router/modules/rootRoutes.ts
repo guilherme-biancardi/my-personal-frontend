@@ -3,9 +3,12 @@ import { loginRoutes } from './loginRoutes';
 
 const ROUTER_VIEW = 'root' as const;
 
-const loginRoute = createRoute('login', 'login');
-loginRoute.setRedirect('signIn');
-loginRoute.setComponent(import('@/views/root/LoginView.vue'), ROUTER_VIEW);
-loginRoute.setChildren(loginRoutes);
+const login = createRoute('login', 'login');
+login.setRedirect('signIn');
+login.setComponent(import('@/views/root/LoginView.vue'), ROUTER_VIEW);
+login.setChildren(loginRoutes);
 
-export const rootRoutes = convertRoutes([loginRoute.route]);
+const app = createRoute('app', 'app');
+app.setComponent(import('@/views/root/AppView.vue'), ROUTER_VIEW);
+
+export const rootRoutes = convertRoutes([login.route, app.route]);
