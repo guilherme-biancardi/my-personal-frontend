@@ -59,8 +59,6 @@ article {
 }
 
 .login-view {
-  display: grid;
-  place-items: center;
   flex-grow: 1;
   height: 100%;
 }
