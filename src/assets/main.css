@@ -29,7 +29,7 @@ button {
   cursor: pointer;
 }
 
-a{
+a {
   text-decoration: none;
 }
 
@@ -38,4 +38,16 @@ a{
   text-decoration: underline;
   font-size: 0.9em;
   font-weight: 700;
+}
+
+/* Transitions */
+.slide-x-enter-active,
+.slide-x-leave-active {
+  transition: all 0.2s ease;
+}
+
+.slide-x-enter-from,
+.slide-x-leave-to {
+  opacity: 0;
+  transform: translateX(10px);
 }

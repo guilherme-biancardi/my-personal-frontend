@@ -4,10 +4,8 @@
     <hr />
     <span
       >Não recebeu o código de ativação?
-      <RouterLink class="base-link" :to="{ name: 'resendActivationLink' }"
-        >Clique Aqui</RouterLink
-      ></span
-    >
+      <RouterLink class="base-link" :to="{ name: 'resendActivationLink' }">Clique Aqui</RouterLink>
+    </span>
   </div>
 </template>
 
@@ -34,7 +32,7 @@ hr {
   background-color: v-bind('colors.grayLight');
 }
 
-span{
+span {
   font-weight: 600;
 }
 </style>

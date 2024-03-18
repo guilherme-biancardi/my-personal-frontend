@@ -6,23 +6,29 @@
           <h1>MyPersonal</h1>
         </RouterLink>
 
-        <button title="Alterar tema" @click="theme.toggleDark()">
+        <button title="Alterar tema" @click="toggleDark()">
           <IconComponent
-            :path="theme.isDark ? mdiWeatherSunny : mdiWeatherNight"
+            :path="isDark ? mdiWeatherSunny : mdiWeatherNight"
             :size="28"
           ></IconComponent>
         </button>
       </header>
-      <RouterView name="login" class="login-view"></RouterView>
+      <RouterView name="login" class="login-view" v-slot="{ Component }">
+        <Transition name="slide-x" mode="out-in">
+          <component :is="Component" />
+        </Transition>
+      </RouterView>
     </article>
 
-    <article class="login-image">
+    <article class="login-image" v-if="isLargeScreen">
       <span>
         <h1>Inicie sua jornada fitness!</h1>
         <p>Acesse para treinar com seu personal</p>
       </span>
 
-      <PersonalTrainerSvg :styles="{ maxWidth: 700, width: '100%' }"></PersonalTrainerSvg>
+      <PersonalTrainerSvg
+        :styles="{ maxWidth: 700, width: '100%', height: '100%'}"
+      ></PersonalTrainerSvg>
     </article>
   </section>
 </template>
@@ -33,8 +39,10 @@ import PersonalTrainerSvg from '@/components/svg/PersonalTrainerSvg.vue';
 import IconComponent from '@/components/util/IconComponent.vue';
 import { useTheme } from '@/ts/theme';
 import { mdiWeatherNight, mdiWeatherSunny } from '@mdi/js';
+import { useMediaQuery } from '@vueuse/core';
 
-const theme = useTheme();
+const { toggleDark, isDark } = useTheme();
+const isLargeScreen = useMediaQuery('(min-width: 1024px)');
 </script>
 
 <style scoped>
@@ -105,5 +113,11 @@ article {
 .login-image span p {
   font-size: 1.2em;
   font-weight: 600;
+}
+
+@media screen and (max-width: 1023px) {
+  .login-content {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
