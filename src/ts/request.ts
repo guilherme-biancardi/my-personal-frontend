@@ -19,11 +19,11 @@ export const useRequest = async <Res = null, Err = BaseError>(
   try {
     const { data } = await request();
     responseRef.value = data;
+
+    fetchRef.value = true;
   } catch (err) {
     const error = err as AxiosError<Err>;
     errorRef.value = error.response;
-  } finally {
-    fetchRef.value = true;
   }
 
   return {

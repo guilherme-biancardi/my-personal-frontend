@@ -2,9 +2,7 @@
   <section class="login-content">
     <article>
       <header class="login-header">
-        <RouterLink to="/">
-          <h1>MyPersonal</h1>
-        </RouterLink>
+        <LogoComponent></LogoComponent>
 
         <button title="Alterar tema" @click="toggleDark()">
           <IconComponent
@@ -13,11 +11,13 @@
           ></IconComponent>
         </button>
       </header>
-      <RouterView name="login" class="login-view" v-slot="{ Component }">
-        <Transition name="slide-x" mode="out-in">
-          <component :is="Component" />
-        </Transition>
-      </RouterView>
+      <div class="login-view">
+        <RouterView name="login" v-slot="{ Component }">
+          <Transition name="slide-x" mode="out-in">
+            <component :is="Component" />
+          </Transition>
+        </RouterView>
+      </div>
     </article>
 
     <article class="login-image" v-if="isLargeScreen">
@@ -27,7 +27,7 @@
       </span>
 
       <PersonalTrainerSvg
-        :styles="{ maxWidth: 700, width: '100%', height: '100%'}"
+        :styles="{ maxWidth: 700, width: '100%', height: '100%' }"
       ></PersonalTrainerSvg>
     </article>
   </section>
@@ -37,6 +37,7 @@
 import colors from '@/assets/colors.module.css';
 import PersonalTrainerSvg from '@/components/svg/PersonalTrainerSvg.vue';
 import IconComponent from '@/components/util/IconComponent.vue';
+import LogoComponent from '@/components/util/LogoComponent.vue';
 import { useTheme } from '@/ts/theme';
 import { mdiWeatherNight, mdiWeatherSunny } from '@mdi/js';
 import { useMediaQuery } from '@vueuse/core';
@@ -68,6 +69,7 @@ article {
 
 .login-view {
   flex-grow: 1;
+  width: 100%;
   height: 100%;
 }
 
@@ -84,13 +86,6 @@ article {
 }
 
 .login-header button:hover {
-  color: v-bind('colors.primary');
-}
-
-.login-header h1 {
-  font-style: italic;
-  font-weight: 900;
-  font-size: 1.8em;
   color: v-bind('colors.primary');
 }
 

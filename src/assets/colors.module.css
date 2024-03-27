@@ -1,5 +1,6 @@
 [theme='light'] {
   --primary: #5f27cd;
+  --primary-light: #925cff;
 
   --light: #fff;
   --light-lightness: #f5f5f5;
@@ -14,10 +15,13 @@
   --gray-medium: #999;
   --gray-dark: #777;
   --gray-darkness: #555;
+
+  --error: #d23434;
 }
 
 [theme='dark'] {
   --primary: #925cff;
+  --primary-light: #ac84fa;
 
   --light: #1b1b1b;
   --light-lightness: #222;
@@ -32,10 +36,13 @@
   --gray-medium: #353535;
   --gray-dark: #404040;
   --gray-darkness: #454545;
+
+  --error: #ff3838;
 }
 
 :export {
   primary: var(--primary);
+  primaryLight: var(--primary-light);
   light: var(--light);
   text: var(--text);
 
@@ -50,4 +57,6 @@
   grayMedium: var(--gray-medium);
   grayDark: var(--gray-dark);
   grayDarkness: var(--gray-darkness);
+
+  error: var(--error);
 }

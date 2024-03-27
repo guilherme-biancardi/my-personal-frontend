@@ -6,7 +6,7 @@ import { defineStore } from 'pinia';
 import { computed, shallowReactive, watch } from 'vue';
 
 interface State {
-  api: AxiosInstance | null;
+  api: AxiosInstance;
   user: User | null;
 }
 
@@ -20,7 +20,9 @@ export const useAppStore = defineStore('app', () => {
   } as Storage);
 
   const state = shallowReactive<State>({
-    api: null,
+    api: axios.create({
+      baseURL: import.meta.env.VITE_API_URL
+    }),
     user: null
   });
 
