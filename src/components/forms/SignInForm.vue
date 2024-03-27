@@ -1,11 +1,10 @@
 <template>
-  <FormContent @submit.prevent="submit">
-    <InputComponent
-      v-for="(input, index) in inputs"
-      :key="index"
-      :="input"
-      v-model="input.value"
-    ></InputComponent>
+  <FormContent
+    @submit="submit"
+    :schema="schema"
+    @disable-form="(disable) => (disableButton = disable)"
+  >
+    <InputComponent v-for="(input, index) in inputs" :key="index" :="input"></InputComponent>
 
     <RouterLink class="base-link" :to="{ name: 'forgotPassword' }">Esqueceu sua senha?</RouterLink>
 
@@ -24,33 +23,34 @@
 
 <script setup lang="ts">
 import { useInput, type Input } from '@/ts/input';
-import { computed, ref } from 'vue';
+import { computed, ref, shallowRef } from 'vue';
 import InputComponent from '../util/InputComponent.vue';
-import FormContent from '../contents/FormContent.vue';
+import FormContent, { type FormSubmit } from '../contents/FormContent.vue';
 import ButtonFilledComponent from '../util/ButtonFilledComponent.vue';
 import { useRequest } from '@/ts/request';
 import type { LoginResponse } from '@/requests/auth/types';
 import { authenticate } from '@/requests/auth/request';
 import { useAppStore } from '@/stores/appStore';
 import { useRouter } from 'vue-router';
+import { signInSchema } from './schemas/signIn';
 
 const appStore = useAppStore();
 const router = useRouter();
+const schema = signInSchema();
 
 const inputsComputed = computed<Input[]>(() => {
   const email = useInput('email', 'email');
   email.setLabel('E-mail:');
   email.setAttributes({
     placeholder: 'Insira seu endereço de e-mail',
-    required: true,
-    autocomplete: 'email'
+    autocomplete: 'email',
+    autofocus: 'true'
   });
 
   const password = useInput('password', 'password');
   password.setLabel('Senha:');
   password.setAttributes({
     placeholder: 'Insira sua senha',
-    required: true,
     autocomplete: 'current-password'
   });
 
@@ -58,14 +58,13 @@ const inputsComputed = computed<Input[]>(() => {
 });
 
 const inputs = ref<Input[]>(inputsComputed.value);
+const disableButton = shallowRef<boolean>(false);
 
-const submit = async () => {
-  const [email, password] = inputs.value;
-
+const submit: FormSubmit<'email' | 'password'> = async (values) => {
   const { response, error } = await useRequest<LoginResponse>(
     authenticate({
-      email: email.value as string,
-      password: password.value as string
+      email: values.email,
+      password: values.password
     })
   );
 

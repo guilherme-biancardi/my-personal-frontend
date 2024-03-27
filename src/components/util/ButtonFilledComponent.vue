@@ -36,7 +36,13 @@ button:hover:not(.hover) {
   color: v-bind('props.hover?.color');
 }
 
+button:disabled {
+  background-color: v-bind('colors.grayLightness');
+  color: v-bind('colors.grayDarkness');
+  cursor: no-drop;
+}
+
 button p {
-  font-weight: 500;
+  font-weight: 600;
 }
 </style>

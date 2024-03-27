@@ -25,33 +25,22 @@ type InputHTMLTypeAttribute =
   | 'url'
   | 'week';
 
-export interface FormValidation {
-  label: string;
-  setValidation: (text: string) => boolean;
-  valid?: boolean;
-}
-
 export interface Input {
   name: string;
   type: InputHTMLTypeAttribute;
-  value: string | number | undefined | boolean | File;
   attributes?: InputHTMLAttributes;
   mask?: string;
   maskOptions?: MaskInputOptions;
   maskTokens?: string;
   label?: string;
-  validations?: FormValidation[];
+  value?: string;
 }
 
 type InputKeys = keyof Input;
 
 export type InputMap = Map<InputKeys, Input[InputKeys]>;
 
-export const useInput = (
-  name: string,
-  type: Input['type'] = 'text',
-  value: Input['value'] = undefined
-) => {
+export const useInput = (name: string, type: Input['type'] = 'text', value = '') => {
   const input: InputMap = new Map();
 
   input.set('name', name);
@@ -64,16 +53,12 @@ export const useInput = (
   const setMaskTokens = (tokens: Input['maskTokens']) => input.set('maskTokens', tokens);
   const setLabel = (label: string) => input.set('label', label);
 
-  const setValidations = (validations: Input['validations']) =>
-    input.set('validations', validations);
-
   return {
     setAttributes,
     setMask,
     setMaskOptions,
     setMaskTokens,
     setLabel,
-    setValidations,
     get: () => Object.fromEntries(input) as unknown as Input
   };
 };
