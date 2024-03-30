@@ -29,12 +29,9 @@ import { mdiCheckBold, mdiFormTextboxPassword } from '@mdi/js';
 import colors from '@/assets/colors.module.css';
 import ForgotPasswordForm from '@/components/forms/ForgotPasswordForm.vue';
 import { shallowRef } from 'vue';
+import type { SendView } from '..';
 
-export type Send = {
-  message: string;
-};
-
-const isSend = shallowRef<Send | null>(null);
+const isSend = shallowRef<SendView | null>(null);
 </script>
 
 <style scoped>

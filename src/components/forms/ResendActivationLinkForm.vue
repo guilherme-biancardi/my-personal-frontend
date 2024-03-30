@@ -23,11 +23,11 @@ import { useInput, type Input } from '@/ts/input';
 import InputComponent from '../util/InputComponent.vue';
 import ButtonFilledComponent from '../util/ButtonFilledComponent.vue';
 import { useRequest } from '@/ts/request';
-import { forgotPassword } from '@/requests/user/request';
-import { forgotPasswordSchema } from './schemas/forgotPassword';
 import type { SendView } from '@/views';
+import { resendActivationLinkSchema } from './schemas/resendActivationLink';
+import { resendActivationLink } from '../../requests/user/request';
 
-const schema = forgotPasswordSchema();
+const schema = resendActivationLinkSchema();
 
 const emit = defineEmits<{
   (event: 'send', send: SendView): void;
@@ -49,17 +49,13 @@ const input = ref<Input>(inputComputed.value);
 const disableButton = shallowRef<boolean>(false);
 
 const submit: FormSubmit<'email'> = async (values) => {
-  disableButton.value = true;
-
   const { response } = await useRequest<{ message: string }>(
-    forgotPassword({ email: values.email })
+    resendActivationLink({ email: values.email })
   );
 
   if (response.value) {
     emit('send', response.value);
   }
-
-  disableButton.value = false;
 };
 </script>
 
