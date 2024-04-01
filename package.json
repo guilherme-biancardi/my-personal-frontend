@@ -14,7 +14,14 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@jamescoyle/vue-icon": "^0.1.2",
+    "@mdi/js": "^7.4.47",
+    "@vee-validate/yup": "^4.12.6",
+    "@vueuse/core": "^10.9.0",
+    "axios": "^1.6.8",
+    "maska": "^2.1.11",
     "pinia": "^2.1.7",
+    "vee-validate": "^4.12.6",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },
