@@ -1,7 +1,7 @@
 import { toTypedSchema } from '@vee-validate/yup';
 import { object, string, ref } from 'yup';
 
-export const resetPasswordSchema = (): object =>
+export const changePasswordSchema = (): object =>
   toTypedSchema(
     object({
       currentPassword: string()

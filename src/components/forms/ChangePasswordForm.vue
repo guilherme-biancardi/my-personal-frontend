@@ -24,28 +24,21 @@ import InputComponent from '../util/InputComponent.vue';
 import { computed, ref, shallowRef } from 'vue';
 import ButtonFilledComponent from '../util/ButtonFilledComponent.vue';
 import { useRequest } from '@/ts/request';
-import { resetPassword } from '@/requests/auth/request';
-import { useRoute } from 'vue-router';
+import { useRouter } from 'vue-router';
+import { changePasswordSchema } from './schemas/changePassword';
+import { changePassword } from '@/requests/user/request';
+import { useAppStore } from '@/stores/appStore';
 
-const route = useRoute();
+const appStore = useAppStore();
+const router = useRouter();
 const schema = changePasswordSchema();
 
-interface RouteParams {
-  token?: string;
-}
-
-const params = computed<RouteParams>(() => route.params as RouteParams);
-
-const emit = defineEmits<{
-  (event: 'setSend', isSend: boolean): void;
-}>();
-
 const inputsComputed = computed(() => {
-  const email = useInput('email', 'email');
-  email.setLabel('E-mail:');
-  email.setAttributes({
-    placeholder: 'Insira seu e-mail',
-    autocomplete: 'email',
+  const currentPassword = useInput('currentPassword', 'password');
+  currentPassword.setLabel('Senha atual:');
+  currentPassword.setAttributes({
+    placeholder: 'Insira sua senha atual',
+    autocomplete: 'current-password',
     autofocus: 'true'
   });
 
@@ -63,28 +56,30 @@ const inputsComputed = computed(() => {
     autocomplete: 'new-password'
   });
 
-  return [email.get(), password.get(), passwordConfirmation.get()];
+  return [currentPassword.get(), password.get(), passwordConfirmation.get()];
 });
 
 const inputs = ref<Input[]>(inputsComputed.value);
 const disableButton = shallowRef<boolean>(false);
 
-const submit: FormSubmit<'email' | 'password' | 'passwordConfirmation'> = async (values) => {
-  if (params.value.token) {
-    const { isFetch, error } = await useRequest(
-      resetPassword({
-        email: values.email,
-        password: values.password,
-        password_confirmation: values.passwordConfirmation,
-        token: params.value.token
-      })
-    );
+const submit: FormSubmit<'currentPassword' | 'password' | 'passwordConfirmation'> = async (
+  values
+) => {
+  const { isFetch, error } = await useRequest(
+    changePassword({
+      current_password: values.currentPassword,
+      password: values.password,
+      password_confirmation: values.passwordConfirmation
+    })
+  );
 
-    emit('setSend', isFetch.value);
+  if (isFetch.value) {
+    router.push({ name: 'app' });
+    appStore.setChangePasswordRequired(false);
+  }
 
-    if (error.value) {
-      console.log(error.value?.data);
-    }
+  if (error.value) {
+    console.log(error.value?.data);
   }
 };
 </script>

@@ -8,3 +8,8 @@ export interface User {
 }
 
 export type GetUserResponse = BaseResponse<User>;
+
+export type ChangePasswordRequest = Record<
+  'current_password' | 'password' | 'password_confirmation',
+  string
+>;
