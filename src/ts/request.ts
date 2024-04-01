@@ -3,6 +3,7 @@ import { computed, shallowRef } from 'vue';
 
 interface BaseError {
   message: string;
+  error: string;
 }
 
 export const useRequest = async <Res = null, Err = BaseError>(

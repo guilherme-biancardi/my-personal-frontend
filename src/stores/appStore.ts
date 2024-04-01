@@ -8,6 +8,7 @@ import { computed, shallowReactive, watch } from 'vue';
 interface State {
   api: AxiosInstance;
   user: User | null;
+  changePasswordRequired: boolean;
 }
 
 interface Storage {
@@ -23,15 +24,19 @@ export const useAppStore = defineStore('app', () => {
     api: axios.create({
       baseURL: import.meta.env.VITE_API_URL
     }),
-    user: null
+    user: null,
+    changePasswordRequired: false
   });
 
   const useApi = computed(() => state.api);
   const getToken = computed(() => storage.value.token);
   const getUser = computed(() => state.user);
+  const getChangePasswordRequired = computed(() => state.changePasswordRequired);
 
   const setToken = (token: string | null) => (storage.value.token = token);
   const setUser = (user: User | null) => (state.user = user);
+  const setChangePasswordRequired = (required: boolean) =>
+    (state.changePasswordRequired = required);
 
   watch(
     getToken,
@@ -55,8 +60,10 @@ export const useAppStore = defineStore('app', () => {
     useApi,
     getToken,
     getUser,
+    getChangePasswordRequired,
     setToken,
     setUser,
+    setChangePasswordRequired,
     $reset
   };
 });

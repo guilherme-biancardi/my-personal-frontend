@@ -21,8 +21,13 @@ if (response.value) {
 }
 
 if (error.value) {
-  appStore.$reset();
-  router.replace({ name: 'login' });
+  if (error.value.data.error === 'passwordChangeRequired') {
+    router.replace({ name: 'changePassword' });
+    appStore.setChangePasswordRequired(true);
+  } else {
+    appStore.$reset();
+    router.replace({ name: 'login' });
+  }
 }
 </script>
 
