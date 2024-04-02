@@ -1,6 +1,6 @@
 <template>
   <button v-if="visible" :type="type" :="attributes" :class="{ hover }" :style="style">
-    <p>{{ text }}</p>
+    <p v-if="text">{{ text }}</p>
     <IconComponent v-if="icon" :="icon"></IconComponent>
   </button>
 </template>
@@ -18,6 +18,10 @@ const props = withDefaults(defineProps<Button>(), {
 
 <style scoped>
 button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 4px;
   width: 100%;
   background-color: v-bind('colors.primary');
   color: #fff;

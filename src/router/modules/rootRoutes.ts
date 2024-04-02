@@ -2,6 +2,7 @@ import { convertRoutes, createRoute } from '@/ts/route';
 import { loginRoutes } from './loginRoutes';
 import { isAuthenticated } from '@/middlewares/isAuthenticated';
 import { isNotAuthenticated } from '@/middlewares/isNotAuthenticated';
+import { appRoutes } from './appRoutes';
 
 const ROUTER_VIEW = 'root' as const;
 
@@ -13,6 +14,8 @@ login.setBeforeEnter(isAuthenticated);
 
 const app = createRoute('app', 'app');
 app.setComponent(import('@/views/root/AppView.vue'), ROUTER_VIEW);
+app.setChildren(appRoutes);
+app.setRedirect('clients');
 app.setBeforeEnter(isNotAuthenticated);
 
 const resetPassword = createRoute('redefinir-senha/:token', 'resetPassword');
