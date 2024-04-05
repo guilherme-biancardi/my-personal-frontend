@@ -72,12 +72,12 @@ const submit: FormSubmit<'email' | 'password'> = async (values) => {
     const { data, message } = response.value;
     appStore.setToken(data.token);
 
-    console.log(message);
+    appStore.notify(message ?? '');
     router.replace({ name: 'app' });
   }
 
   if (error.value) {
-    console.log('E-mail e/ou senha inválidos');
+    appStore.notify(error.value.data.message, 'error')
   }
 };
 </script>

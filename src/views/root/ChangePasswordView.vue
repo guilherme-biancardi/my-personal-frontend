@@ -16,10 +16,11 @@ import RootContent from '@/components/contents/RootContent.vue';
 import ChangePasswordForm from '@/components/forms/ChangePasswordForm.vue';
 import IconComponent from '@/components/util/IconComponent.vue';
 import { useAppStore } from '@/stores/appStore';
+import { useColors } from '@/ts/colors';
 import { mdiLockPlusOutline } from '@mdi/js';
 import { useRouter } from 'vue-router';
-import colors from '@/assets/colors.module.css';
 
+const colors = useColors();
 const router = useRouter();
 const appStore = useAppStore();
 

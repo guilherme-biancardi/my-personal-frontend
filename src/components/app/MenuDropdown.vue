@@ -21,14 +21,15 @@
 import { useRouter, type RouterLinkProps } from 'vue-router';
 import type { Icon } from '../util/IconComponent.vue';
 import { mdiFormTextboxPassword, mdiLoginVariant } from '@mdi/js';
-import colors from '@/assets/colors.module.css';
 import IconComponent from '../util/IconComponent.vue';
 import { useRequest } from '@/ts/request';
 import { logout } from '@/requests/auth/request';
 import { useAppStore } from '@/stores/appStore';
+import { useColors } from '@/ts/colors';
 
 const appStore = useAppStore();
 const router = useRouter();
+const colors = useColors();
 
 interface DropdownButton {
   type: 'button';
@@ -54,7 +55,7 @@ const doLogout = async () => {
   }
 
   if (error.value) {
-    console.log(error.value.data.message);
+    appStore.notify(error.value.data.message, 'error');
   }
 };
 

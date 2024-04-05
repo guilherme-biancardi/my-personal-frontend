@@ -8,6 +8,8 @@
   --light-dark: #f0f0f0;
   --light-darkness: #eee;
 
+  --light-opacity: rgba(255, 255, 255, 0.85);
+
   --text: #333;
 
   --gray-light: #ddd;
@@ -28,6 +30,8 @@
   --light-medium: #242424;
   --light-dark: #272727;
   --light-darkness: #2b2b2b;
+
+  --light-opacity: rgba(27, 27, 27, 0.95);
 
   --text: #eee;
 
@@ -51,6 +55,8 @@
   lightMedium: var(--light-medium);
   lightDark: var(--light-dark);
   lightDarkness: var(--light-darkness);
+
+  lightOpacity: var(--light-opacity);
 
   grayLight: var(--gray-light);
   grayLightness: var(--gray-lightness);

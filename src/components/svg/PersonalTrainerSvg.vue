@@ -171,8 +171,10 @@
 </template>
 
 <script setup lang="ts">
-import colors from '@/assets/colors.module.css';
+import { useColors } from '@/ts/colors';
 import type { SvgImage } from './types';
+
+const colors = useColors();
 
 defineProps<SvgImage>();
 </script>

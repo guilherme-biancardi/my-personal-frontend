@@ -26,10 +26,12 @@
 <script setup lang="ts">
 import IconComponent from '@/components/util/IconComponent.vue';
 import { mdiCheckBold, mdiFormTextboxPassword } from '@mdi/js';
-import colors from '@/assets/colors.module.css';
 import ForgotPasswordForm from '@/components/forms/ForgotPasswordForm.vue';
 import { shallowRef } from 'vue';
 import type { SendView } from '..';
+import { useColors } from '@/ts/colors';
+
+const colors = useColors();
 
 const isSend = shallowRef<SendView | null>(null);
 </script>
