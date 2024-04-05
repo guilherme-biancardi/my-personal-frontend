@@ -8,7 +8,9 @@
 <script setup lang="ts">
 import type { Button } from '@/ts/button';
 import IconComponent from './IconComponent.vue';
-import colors from '@/assets/colors.module.css';
+import { useColors } from '@/ts/colors';
+
+const colors = useColors();
 
 const props = withDefaults(defineProps<Button>(), {
   type: 'button',

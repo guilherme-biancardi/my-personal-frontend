@@ -1,5 +1,6 @@
 <template>
   <main>
+    <NotificationsContent></NotificationsContent>
     <Suspense>
       <RouterView name="root" v-slot="{ Component }">
         <Transition name="fade-view" mode="out-in">
@@ -12,8 +13,11 @@
 
 <script setup lang="ts">
 import '@/assets/main.css';
-import colors from '@/assets/colors.module.css';
 import { useTheme } from './ts/theme';
+import NotificationsContent from './components/contents/NotificationsContent.vue';
+import { useColors } from './ts/colors';
+
+const colors = useColors();
 
 useTheme();
 </script>
@@ -25,6 +29,11 @@ main {
   display: grid;
   place-items: center;
   background-color: v-bind('colors.lightLightness');
+}
+
+.teste {
+  position: absolute;
+  right: 0;
 }
 
 .fade-view-enter-active,

@@ -30,11 +30,13 @@ import { vMaska } from 'maska';
 import type { Input } from '@/ts/input';
 import { useField } from 'vee-validate';
 import { computed, shallowRef, toRef, watch } from 'vue';
-import colors from '@/assets/colors.module.css';
 import InputErrorComponent from './InputErrorComponent.vue';
 import IconComponent from './IconComponent.vue';
 import { mdiEye, mdiEyeOff } from '@mdi/js';
 import { useToggle } from '@vueuse/core';
+import { useColors } from '@/ts/colors';
+
+const colors = useColors();
 
 const props = defineProps<Input>();
 const name = toRef(() => props.name);

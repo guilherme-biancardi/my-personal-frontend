@@ -34,14 +34,15 @@
 </template>
 
 <script setup lang="ts">
-import colors from '@/assets/colors.module.css';
 import PersonalTrainerSvg from '@/components/svg/PersonalTrainerSvg.vue';
 import IconComponent from '@/components/util/IconComponent.vue';
 import LogoComponent from '@/components/util/LogoComponent.vue';
+import { useColors } from '@/ts/colors';
 import { useTheme } from '@/ts/theme';
 import { mdiWeatherNight, mdiWeatherSunny } from '@mdi/js';
 import { useMediaQuery } from '@vueuse/core';
 
+const colors = useColors();
 const { toggleDark, isDark } = useTheme();
 const isLargeScreen = useMediaQuery('(min-width: 1024px)');
 </script>

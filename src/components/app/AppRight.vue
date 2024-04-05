@@ -10,8 +10,10 @@
 
 <script setup lang="ts">
 import { useAppStore } from '@/stores/appStore';
+import { useColors } from '@/ts/colors';
 import { computed } from 'vue';
-import colors from '@/assets/colors.module.css';
+
+const colors = useColors();
 
 const appStore = useAppStore();
 const user = computed(() => appStore.getUser);

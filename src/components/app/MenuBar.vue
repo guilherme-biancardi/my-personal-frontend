@@ -22,7 +22,6 @@
 </template>
 
 <script setup lang="ts">
-import colors from '@/assets/colors.module.css';
 import type { RouterLinkProps } from 'vue-router';
 import type { Icon } from '../util/IconComponent.vue';
 import { mdiAccount, mdiDotsGrid, mdiWeatherNight, mdiWeatherSunny } from '@mdi/js';
@@ -31,8 +30,10 @@ import { shallowRef } from 'vue';
 import { useToggle } from '@vueuse/core';
 import MenuDropdown from './MenuDropdown.vue';
 import { useTheme } from '@/ts/theme';
+import { useColors } from '@/ts/colors';
 
 const { isDark, toggleDark } = useTheme();
+const colors = useColors();
 
 interface MenuItem {
   text: string;

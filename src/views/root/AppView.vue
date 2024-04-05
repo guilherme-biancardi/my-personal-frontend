@@ -9,13 +9,13 @@
 </template>
 
 <script setup lang="ts">
+import AppRight from '@/components/app/AppRight.vue';
 import MenuBar from '@/components/app/MenuBar.vue';
 import { getUser } from '@/requests/user/request';
 import type { GetUserResponse } from '@/requests/user/types';
 import { useAppStore } from '@/stores/appStore';
 import { useRequest } from '@/ts/request';
 import { useRouter } from 'vue-router';
-import AppRight from '../app/AppRight.vue';
 
 const appStore = useAppStore();
 const router = useRouter();

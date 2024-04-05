@@ -12,7 +12,10 @@
 </template>
 
 <script setup lang="ts">
+import { useAppStore } from '@/stores/appStore';
 import { Form } from 'vee-validate';
+
+const appStore = useAppStore();
 
 export type FormSubmit<T extends string> = (values: Record<T, string>) => void;
 
@@ -29,7 +32,7 @@ withDefaults(defineProps<FormContent>(), {
   gap: 20
 });
 
-const invalid = () => alert('preencha os campos corretamente');
+const invalid = () => appStore.notify('Preencha os campos corretamente', 'warning');
 </script>
 
 <style scoped>

@@ -10,6 +10,8 @@ declare const styles: {
   readonly lightDark: string;
   readonly lightDarkness: string;
 
+  readonly lightOpacity: string;
+
   readonly grayLight: string;
   readonly grayLight: string;
   readonly grayLightness: string;
