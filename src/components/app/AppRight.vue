@@ -4,16 +4,14 @@
       <h1>{{ user?.name }}</h1>
       <p>{{ user?.email }}</p>
     </div>
-    <div class="photo"></div>
+    <PhotoComponent></PhotoComponent>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useAppStore } from '@/stores/appStore';
-import { useColors } from '@/ts/colors';
 import { computed } from 'vue';
-
-const colors = useColors();
+import PhotoComponent from '../util/PhotoComponent.vue';
 
 const appStore = useAppStore();
 const user = computed(() => appStore.getUser);
@@ -38,12 +36,5 @@ const user = computed(() => appStore.getUser);
 
 .user-text p {
   font-size: 0.9em;
-}
-
-.photo {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background-color: v-bind('colors.grayLight');
 }
 </style>
