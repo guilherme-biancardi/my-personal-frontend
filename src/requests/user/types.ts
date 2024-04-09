@@ -5,6 +5,7 @@ export interface User {
   name: string;
   email: string;
   isOwner: boolean;
+  photo: string | null;
 }
 
 export type GetUserResponse = BaseResponse<User>;

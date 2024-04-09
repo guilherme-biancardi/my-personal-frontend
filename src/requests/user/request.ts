@@ -1,5 +1,5 @@
 import { useAppStore } from '@/stores/appStore';
-import type { RequestFactory } from '..';
+import { useFormDataHeader, type RequestFactory } from '..';
 import { pinia } from '@/stores';
 import type { ChangePasswordRequest } from './types';
 
@@ -15,3 +15,11 @@ export const resendActivationLink: RequestFactory<{ email: string }> = (params) 
 
 export const changePassword: RequestFactory<ChangePasswordRequest> = (params) => () =>
   appStore.useApi.patch('/user/change-password', params);
+
+export const uploadPhoto: RequestFactory<{ image: Blob }> = (params) => {
+  const formData = new FormData();
+  formData.append('image', params.image);
+
+  return () =>
+    appStore.useApi.post('/user/upload-photo', formData, { headers: useFormDataHeader() });
+};
