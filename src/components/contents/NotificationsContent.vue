@@ -1,7 +1,11 @@
 <template>
   <TransitionGroup name="slide-x" tag="ul" class="notifications-content">
     <li v-for="(notification, index) in getNotifications" :key="index">
-      <NotificationComponent :="notification"></NotificationComponent>
+      <NotificationComponent
+        :="notification"
+        :index="index"
+        @on-close="reset"
+      ></NotificationComponent>
     </li>
   </TransitionGroup>
 </template>
@@ -12,10 +16,10 @@ import NotificationComponent from '../util/NotificationComponent.vue';
 import { useInterval } from '@vueuse/core';
 import { computed, watch } from 'vue';
 
-const BASE_TIME = 3500 as const;
+const BASE_TIME = 3000 as const;
 const { getNotifications, removeNotification } = useAppStore();
 
-const { resume, pause, isActive } = useInterval(BASE_TIME, {
+const { resume, pause, isActive, reset } = useInterval(BASE_TIME, {
   controls: true,
   callback: removeNotification,
   immediate: false
