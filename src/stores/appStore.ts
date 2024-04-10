@@ -44,6 +44,7 @@ export const useAppStore = defineStore('app', () => {
   const notify = (message: string, type: AppNotification['type'] = 'success') =>
     notifications.value.push({ message, type });
   const removeNotification = () => notifications.value.shift();
+  const removeNotificationByIndex = (index: number) => notifications.value.splice(index, 1);
 
   const setToken = (token: string | null) => (storage.value.token = token);
   const setUser = (user: User | null) => (state.user = user);
@@ -76,6 +77,7 @@ export const useAppStore = defineStore('app', () => {
     getNotifications,
     notify,
     removeNotification,
+    removeNotificationByIndex,
     setToken,
     setUser,
     setChangePasswordRequired,

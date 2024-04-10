@@ -35,11 +35,11 @@
 
   --text: #eee;
 
-  --gray-light: #303030;
-  --gray-lightness: #323232;
-  --gray-medium: #353535;
-  --gray-dark: #404040;
-  --gray-darkness: #454545;
+  --gray-light: #333;
+  --gray-lightness: #555;
+  --gray-medium: #777;
+  --gray-dark: #999;
+  --gray-darkness: #bbb;
 
   --error: #ff3838;
 }
