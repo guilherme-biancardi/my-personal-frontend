@@ -8,3 +8,7 @@ export interface BaseResponse<Data> {
 }
 
 export type ErrorWithRequest<Fields extends string> = Record<Fields, string[]>;
+
+export const useFormDataHeader = () => ({
+  'Content-Type': 'multipart/form-data'
+});

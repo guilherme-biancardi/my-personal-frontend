@@ -29,11 +29,12 @@
 <script setup lang="ts">
 import IconComponent from '@/components/util/IconComponent.vue';
 import { mdiAccountCheckOutline, mdiCheckBold } from '@mdi/js';
-import colors from '@/assets/colors.module.css';
 import { shallowRef } from 'vue';
 import type { SendView } from '..';
 import ResendActivationLinkForm from '@/components/forms/ResendActivationLinkForm.vue';
+import { useColors } from '@/ts/colors';
 
+const colors = useColors();
 const isSend = shallowRef<SendView | null>(null);
 </script>
 

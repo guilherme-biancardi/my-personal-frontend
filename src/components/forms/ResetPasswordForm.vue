@@ -27,9 +27,11 @@ import ButtonFilledComponent from '../util/ButtonFilledComponent.vue';
 import { useRequest } from '@/ts/request';
 import { resetPassword } from '@/requests/auth/request';
 import { useRoute } from 'vue-router';
+import { useAppStore } from '@/stores/appStore';
 
 const route = useRoute();
 const schema = resetPasswordSchema();
+const appStore = useAppStore();
 
 interface RouteParams {
   token?: string;
@@ -84,7 +86,7 @@ const submit: FormSubmit<'email' | 'password' | 'passwordConfirmation'> = async 
     emit('setSend', isFetch.value);
 
     if (error.value) {
-      console.log(error.value?.data);
+      appStore.notify(error.value.data.message, 'error');
     }
   }
 };

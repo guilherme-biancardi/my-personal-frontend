@@ -76,10 +76,11 @@ const submit: FormSubmit<'currentPassword' | 'password' | 'passwordConfirmation'
   if (isFetch.value) {
     router.push({ name: 'app' });
     appStore.setChangePasswordRequired(false);
+    appStore.notify('Senha alterada com sucesso');
   }
 
   if (error.value) {
-    console.log(error.value?.data);
+    appStore.notify(error.value.data.message, 'error');
   }
 };
 </script>

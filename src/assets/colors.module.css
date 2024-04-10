@@ -8,6 +8,8 @@
   --light-dark: #f0f0f0;
   --light-darkness: #eee;
 
+  --light-opacity: rgba(255, 255, 255, 0.85);
+
   --text: #333;
 
   --gray-light: #ddd;
@@ -24,18 +26,20 @@
   --primary-light: #ac84fa;
 
   --light: #1b1b1b;
-  --light-lightness: #222;
-  --light-medium: #2b2b2b;
-  --light-dark: #303030;
-  --light-darkness: #3b3b3b;
+  --light-lightness: #202020;
+  --light-medium: #242424;
+  --light-dark: #272727;
+  --light-darkness: #2b2b2b;
+
+  --light-opacity: rgba(27, 27, 27, 0.95);
 
   --text: #eee;
 
-  --gray-light: #282828;
-  --gray-lightness: #323232;
-  --gray-medium: #353535;
-  --gray-dark: #404040;
-  --gray-darkness: #454545;
+  --gray-light: #333;
+  --gray-lightness: #555;
+  --gray-medium: #777;
+  --gray-dark: #999;
+  --gray-darkness: #bbb;
 
   --error: #ff3838;
 }
@@ -51,6 +55,8 @@
   lightMedium: var(--light-medium);
   lightDark: var(--light-dark);
   lightDarkness: var(--light-darkness);
+
+  lightOpacity: var(--light-opacity);
 
   grayLight: var(--gray-light);
   grayLightness: var(--gray-lightness);

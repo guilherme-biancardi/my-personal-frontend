@@ -19,10 +19,11 @@
 import RootContent from '@/components/contents/RootContent.vue';
 import ResetPasswordForm from '@/components/forms/ResetPasswordForm.vue';
 import IconComponent from '@/components/util/IconComponent.vue';
+import { useColors } from '@/ts/colors';
 import { mdiLockCheckOutline, mdiLockReset } from '@mdi/js';
-import colors from '@/assets/colors.module.css';
 import { shallowRef } from 'vue';
 
+const colors = useColors();
 const send = shallowRef<boolean>(false);
 </script>
 

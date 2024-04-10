@@ -17,7 +17,9 @@
 <script setup lang="ts">
 import { useMediaQuery } from '@vueuse/core';
 import WavesSvg from '../svg/WavesSvg.vue';
-import colors from '@/assets/colors.module.css';
+import { useColors } from '@/ts/colors';
+
+const colors = useColors();
 
 interface RootContent {
   gap?: number;

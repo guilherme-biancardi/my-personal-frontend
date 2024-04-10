@@ -10,8 +10,10 @@
 </template>
 
 <script setup lang="ts">
-import colors from '@/assets/colors.module.css';
 import SignInForm from '@/components/forms/SignInForm.vue';
+import { useColors } from '@/ts/colors';
+
+const colors = useColors();
 </script>
 
 <style scoped>
