@@ -58,8 +58,8 @@ onChange((files) => {
 <style scoped>
 .use-photo-content {
   position: relative;
-  width: 52px;
-  height: 52px;
+  width: 50px;
+  height: 50px;
   overflow: hidden;
   border-radius: 50%;
 }

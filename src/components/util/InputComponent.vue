@@ -13,12 +13,13 @@
         :class="{ 'input-invalid': !meta.valid && meta.validated }"
       />
 
-      <button type="button" @click="togglePassword()" v-if="isPassword" class="show-password">
-        <IconComponent
-          :path="passwordVisible ? mdiEyeOff : mdiEye"
-          :size="22"
-        ></IconComponent>
-      </button>
+      <IconComponent
+        v-if="isPassword"
+        :path="passwordVisible ? mdiEyeOff : mdiEye"
+        :size="22"
+        @click="togglePassword()"
+        class="show-password"
+      ></IconComponent>
     </div>
 
     <InputErrorComponent :errors="errors"></InputErrorComponent>
@@ -71,6 +72,8 @@ const { value, errors, meta } = useField(name, undefined, {
 }
 
 .show-password {
+  user-select: none;
+  cursor: pointer;
   position: absolute;
   right: 12px;
   display: grid;

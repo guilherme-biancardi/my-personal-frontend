@@ -1,6 +1,10 @@
 <template>
   <nav>
-    <button class="button-dropdown" @click="toggleDropdown()">
+    <button
+      class="button-dropdown"
+      @click="toggleDropdown()"
+      @focusout="dropdownVisibility = false"
+    >
       <IconComponent :path="mdiDotsGrid" :size="30"></IconComponent>
     </button>
     <Transition name="slide-x-left">
@@ -121,12 +125,12 @@ hr {
   color: #fff;
 }
 
-.button-theme{
+.button-theme {
   width: 100%;
-  transition: all .2s ease;
+  transition: all 0.2s ease;
 }
 
-.button-theme:hover{
+.button-theme:hover {
   color: v-bind('colors.primary');
 }
 </style>

@@ -77,6 +77,10 @@ const dropdownItens: MenuDropdownItem[] = [
     }
   }
 ] as const;
+
+const teste = () => {
+  alert('kfikfjifj');
+};
 </script>
 
 <style scoped>

@@ -20,6 +20,7 @@ const user = computed(() => appStore.getUser);
 <style scoped>
 .app-right {
   display: flex;
+  align-items: center;
   column-gap: 16px;
   position: absolute;
   top: 12px;
@@ -27,14 +28,17 @@ const user = computed(() => appStore.getUser);
 }
 
 .user-text {
+  line-height: 18px;
   text-align: right;
 }
 
 .user-text h1 {
-  font-size: 1.1em;
+  font-size: 1em;
+  font-weight: 900;
 }
 
 .user-text p {
-  font-size: 0.9em;
+  font-size: 0.85em;
+  font-weight: 600;
 }
 </style>
